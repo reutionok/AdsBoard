@@ -12,5 +12,22 @@ namespace AdsBoard.Domain.Concrete
         {
             get { return context.Advertisements; }
         }
+        public void SaveAd(Advertisement ad)
+        {
+            if (ad.AdId == 0)
+                context.Advertisements.Add(ad);
+            else
+            {
+                Advertisement dbEntry = context.Advertisements.Find(ad.AdId);
+                if (dbEntry != null)
+                {
+                    dbEntry.Headline = ad.Headline;
+                    dbEntry.Details = ad.Details;
+                    dbEntry.ImageData = ad.ImageData;
+                    dbEntry.ImageMimeType = ad.ImageMimeType;
+                }
+            }
+            context.SaveChanges();
+        }
     }
 }

@@ -20,7 +20,7 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark  fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">OBYAVA</a>
+            <a class="navbar-brand" href=#>OBYAVA</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,7 +28,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
-                    </li>                    
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
@@ -43,11 +43,11 @@
                             <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
                             <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
                         </div>
-                    </li>
-                    <li>
-                        <a class="btn btn-success" href=# >Розмістити оголошення</a>
-                    </li>
-                                      
+                    </li>                    
+                    @Html.ActionLink("Розмістити оголошеня", "Create", "Ad",
+                    new { returnUrl = Request.Url.PathAndQuery },
+                    new { @class = "btn btn-success" })
+                                       
                 </ul>
             </div>
         </div>
@@ -73,7 +73,7 @@
 
 </body>
 
-</html>
+
 
 
 

@@ -2,53 +2,17 @@
 @using AdsBoard.WebUI.HtmlHelpers
 @model AdListViewModel
 
-@*<div class="row">
-        @foreach (var a in @Model.Advertisements)
-        {
-            <div class="col-lg-4 col-sm-6 portfolio-item">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">@a.Headline</a>
-                        </h4>
-                        <p class="card-text">
-                            @a.Details
-                        </p>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-    <div>
-        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
-    </div>*@
-
-<!-- Blog Post -->
-@foreach (var a in @Model.Advertisements)
-{
-
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-6">
-                    <a href="#">
-                        <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="card-title">@a.Headline</h2>
-                    <p class="card-text">@a.Details</p>
-                    <a href="#" class="btn btn-primary">Детальніше &rarr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="card-footer text-muted">
-            Оголошення розмістив
-            <a href="#"></a>
-        </div>
-    </div>
+@{
+    ViewBag.Title = "Дошка оголошень ";
 }
+
+@foreach (var p in @Model.Advertisements)
+{
+    @Html.Partial("AdSummary", p)
+}
+
 <div>
     @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
 </div>
+
+
