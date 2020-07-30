@@ -7,13 +7,12 @@
                 <div class="col-lg-6">
                     <a href="#">
                         <img class="img-thumbnail" width=750" height="300" src="@Url.Action("GetImage", "Ad",new { Model.AdId})" />
-                        @*<img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">*@
-                    </a>
+                     </a>
                 </div>
                 <div class="col-lg-6">
                     <h2 class="card-title">@Model.Headline</h2>
                     <p class="card-text">@Model.Details</p>
-                    <a href="#" class="btn btn-primary">Детальніше &rarr;</a>
+                    @Html.ActionLink("Залишити комментар", "Details", new { Model.AdId }, new { @class = "btn btn-primary" })
                 </div>
             </div>
         </div>

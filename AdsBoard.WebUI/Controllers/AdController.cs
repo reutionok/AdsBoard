@@ -34,6 +34,14 @@ namespace AdsBoard.WebUI.Controllers
             };
             return View(model);
         }
+
+        public ViewResult Details(int adId)
+        {
+            Advertisement ad = repository.Advertisements
+                .FirstOrDefault(a => a.AdId == adId);
+            return View(ad);
+
+        }
         public ViewResult Change()
         {
             return View(repository.Advertisements);
@@ -45,7 +53,7 @@ namespace AdsBoard.WebUI.Controllers
             return View(ad);
         }
         [HttpPost]
-        public ActionResult Edit(Advertisement ad, HttpPostedFileBase image = null)
+        public ActionResult Edit(Advertisement ad, HttpPostedFileBase image=null)
         {
             if (ModelState.IsValid)
             {
