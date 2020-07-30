@@ -23,3 +23,7 @@ C:\Users\Sunny\source\Projects\AdsBoard\AdsBoard.Domain\bin\Debug\EntityFramewor
 C:\Users\Sunny\source\Projects\AdsBoard\AdsBoard.Domain\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Sunny\source\Projects\AdsBoard\AdsBoard.Domain\bin\Debug\EntityFramework.xml
 C:\Users\Sunny\source\Projects\AdsBoard\AdsBoard.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Sunny\source\Projects\AdsBoard\AdsBoard.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Sunny\source\Projects\AdsBoard\AdsBoard.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Sunny\source\Projects\AdsBoard\AdsBoard.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Sunny\source\Projects\AdsBoard\AdsBoard.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml

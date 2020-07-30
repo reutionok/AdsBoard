@@ -1,0 +1,39 @@
+﻿@using AdsBoard.Domain.Entities.Identity
+@model IEnumerable<AppUser>
+
+@{
+    ViewBag.Title = "Список користувачів";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Користувачі
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Ім'я</th>
+            <th>Номер телефону</th>
+            <th>Email</th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" class="text-center">Немає жодного користувача</td>
+            </tr>
+        }
+        else
+        {
+            foreach (AppUser user in Model)
+            {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.Email</td>
+            </tr>
+            }
+        }
+    </table>
+</div>
+@Html.ActionLink("Створити", "Create", null, new { @class = "btn btn-primary" })
