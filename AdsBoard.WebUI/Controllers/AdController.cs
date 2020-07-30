@@ -34,7 +34,7 @@ namespace AdsBoard.WebUI.Controllers
             };
             return View(model);
         }
-
+        [Authorize]
         public ViewResult Details(int adId)
         {
             Advertisement ad = repository.Advertisements
@@ -42,16 +42,19 @@ namespace AdsBoard.WebUI.Controllers
             return View(ad);
 
         }
+        [Authorize]
         public ViewResult Change()
         {
             return View(repository.Advertisements);
         }
+        [Authorize]
         public ViewResult Edit(int adId)
         {
             Advertisement ad = repository.Advertisements
                 .FirstOrDefault(a => a.AdId == adId);
             return View(ad);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Advertisement ad, HttpPostedFileBase image=null)
         {
@@ -73,10 +76,13 @@ namespace AdsBoard.WebUI.Controllers
                 return View(ad);
             }
         }
+        [Authorize]
         public ViewResult Create()
         {
             return View("Edit", new Advertisement());
         }
+
+        [Authorize]
         [HttpPost]
         public ActionResult Delete(int adId)
         {
