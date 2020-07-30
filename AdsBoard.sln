@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsBoard.WebUI", "AdsBoard.WebUI\AdsBoard.WebUI.csproj", "{22931F9D-8F01-40D7-A6FE-9B914B404DB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsBoard.Domain", "AdsBoard.Domain\AdsBoard.Domain.csproj", "{220E3513-5D6B-49FC-BEA9-A4D67B1B840D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22931F9D-8F01-40D7-A6FE-9B914B404DB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22931F9D-8F01-40D7-A6FE-9B914B404DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22931F9D-8F01-40D7-A6FE-9B914B404DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22931F9D-8F01-40D7-A6FE-9B914B404DB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{220E3513-5D6B-49FC-BEA9-A4D67B1B840D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{220E3513-5D6B-49FC-BEA9-A4D67B1B840D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{220E3513-5D6B-49FC-BEA9-A4D67B1B840D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{220E3513-5D6B-49FC-BEA9-A4D67B1B840D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {898D612F-D0AB-4952-B0CF-0822F7F4E944}
+	EndGlobalSection
+EndGlobal

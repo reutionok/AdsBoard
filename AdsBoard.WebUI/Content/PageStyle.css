@@ -1,0 +1,43 @@
+﻿body {
+    padding-top: 56px;
+    background-color:whitesmoke;
+    /*background-color: #EAE2D6;*/
+}
+
+nav {
+    background-color:#0F1B07
+    /*background-color: #867666;*/
+    /*margin-bottom:10px;*/
+}
+
+footer {
+    background-color: #0F1B07
+}
+
+.content {
+    margin:30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.navbar-brand {
+    font-family: cursive;
+    font-size: 30px;
+}
+.card-title {
+    color: #d24136;
+}
+
+.btn-primary {
+    background-color: #5C821A;
+    border-color: #c6d166;
+}
+
+a {
+    color: #ee693f;
+}
+
+
+.portfolio-item {
+    margin-bottom: 30px;
+}
