@@ -1,13 +1,12 @@
 ﻿body {
-    padding-top: 56px;
+    padding-top: 60px;
+    padding-bottom:20px;
     background-color:whitesmoke;
-    /*background-color: #EAE2D6;*/
 }
 
 nav {
     background-color:#0F1B07
-    /*background-color: #867666;*/
-    /*margin-bottom:10px;*/
+    
 }
 
 footer {
@@ -15,9 +14,8 @@ footer {
 }
 
 .content {
-    margin:30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    margin:45px;
+    
 }
 
 .navbar-brand {
