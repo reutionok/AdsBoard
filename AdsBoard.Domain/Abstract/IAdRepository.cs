@@ -11,5 +11,6 @@ namespace AdsBoard.Domain.Abstract
     {
         IEnumerable<Advertisement> Advertisements { get; }
         void SaveAd(Advertisement ad);
+        Advertisement DeleteAd(int adId);
     }
 }

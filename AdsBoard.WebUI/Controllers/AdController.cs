@@ -34,6 +34,10 @@ namespace AdsBoard.WebUI.Controllers
             };
             return View(model);
         }
+        public ViewResult Change()
+        {
+            return View(repository.Advertisements);
+        }
         public ViewResult Edit(int adId)
         {
             Advertisement ad = repository.Advertisements
@@ -65,14 +69,26 @@ namespace AdsBoard.WebUI.Controllers
         {
             return View("Edit", new Advertisement());
         }
+        [HttpPost]
+        public ActionResult Delete(int adId)
+        {
+            Advertisement deletedAd = repository.DeleteAd(adId);
+            if (deletedAd != null)
+            {
+                TempData["message"] = string.Format("Оголошення видалено");
+            }
+            return RedirectToAction("List");
+        }
         public FileContentResult GetImage(int adId)
         {
             Advertisement ad = repository.Advertisements
                 .FirstOrDefault(a => a.AdId == adId);
 
-            if (ad != null)
+            if (ad != null && ad.ImageData != null)
             {
-                return File(ad.ImageData, ad.ImageMimeType);
+                
+                    return File(ad.ImageData, ad.ImageMimeType);
+               
             }
             else
             {

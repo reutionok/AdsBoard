@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace AdsBoard.Domain.Concrete
 {
-    public class EFAdRepository: IAdRepository
+    public class EFAdRepository : IAdRepository
     {
         EFDbContext context = new EFDbContext();
         public IEnumerable<Advertisement> Advertisements
@@ -29,5 +29,16 @@ namespace AdsBoard.Domain.Concrete
             }
             context.SaveChanges();
         }
+        public Advertisement DeleteAd(int adId)
+        {
+            Advertisement dbEntry = context.Advertisements.Find(adId);
+            if (dbEntry != null)
+            {
+                context.Advertisements.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
+            
     }
 }
