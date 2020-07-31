@@ -39,12 +39,12 @@
     foreach (var c in Model.Comments)
     {
         <div class="row">
-        <div class="media-left col-1">
+        <div class="media-left col-sm-1 " >
             <a href="#">
                 <img class="media-object img-rounded" src="~/Content/Images/avatar.jpg" alt="...">
             </a>
         </div>
-        <div class="alert alert-success col-8" role="alert">
+        <div class="alert alert-success col-sm-6 offset-sm-1 col-md-6 offset-md-0 " role="alert">
 
             <h5 class="mt-0 alert-heading">@c.Name</h5>
             @c.Text
