@@ -7,20 +7,27 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace AdsBoard.WebUI.IdentityInf
+namespace AdsBoard.Domain.Infrastructure
 {
-    public class CustomUserValidator : IIdentityValidator<AppUser>
+    public class CustomUserValidator : UserValidator<AppUser>
     {
-        public async Task<IdentityResult> ValidateAsync(AppUser item)
+        public CustomUserValidator(AppUserManager manager)
+            : base(manager)
+        { }
+
+        public override async Task<IdentityResult> ValidateAsync(AppUser user)
         {
+            IdentityResult result = await base.ValidateAsync(user);
+
+           
             List<string> errors = new List<string>();
 
-            if (String.IsNullOrEmpty(item.UserName.Trim()))
+            if (String.IsNullOrEmpty(user.UserName.Trim()))
                 errors.Add("Ви не вказали ім'я");
 
             string userNamePattern = @"^[a-zA-Z0-9А-Яа-яёЁЇїІіЄєҐґ]+$";
 
-            if (!Regex.IsMatch(item.UserName, userNamePattern))
+            if (!Regex.IsMatch(user.UserName, userNamePattern))
                 errors.Add("Ім'я може містити тільки літери української та англійської мов та цифри");
 
             if (errors.Count > 0)

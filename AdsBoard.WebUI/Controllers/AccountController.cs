@@ -1,6 +1,5 @@
 ﻿using AdsBoard.Domain.Entities.Identity;
 using AdsBoard.Domain.Infrastructure;
-using AdsBoard.WebUI.IdentityInf;
 using AdsBoard.WebUI.Models.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -14,10 +13,11 @@ using System.Web.Mvc;
 
 namespace AdsBoard.WebUI.Controllers
 {
-    [AllowAnonymous]
+
     [Authorize]
     public class AccountController : Controller
     {
+        [AllowAnonymous]
         public ActionResult Register()
         {
             Logout();
@@ -36,7 +36,7 @@ namespace AdsBoard.WebUI.Controllers
                 if (result.Succeeded)
                 {
                     
-                    return RedirectToAction("List", "Ad");
+                    return RedirectToAction("List","Ad");
                 }
                 else
                 {
@@ -65,7 +65,9 @@ namespace AdsBoard.WebUI.Controllers
 
             if (user == null)
             {
+                ViewBag.returnUrl = returnUrl;
                 ModelState.AddModelError("", "Некоректне ім'я або пароль.");
+                
             }
             else
             {
@@ -85,7 +87,7 @@ namespace AdsBoard.WebUI.Controllers
         public ActionResult Logout()
         {
             AuthManager.SignOut();
-            return RedirectToAction("Login");
+            return RedirectToAction("List", "Ad");
         }
 
         private IAuthenticationManager AuthManager

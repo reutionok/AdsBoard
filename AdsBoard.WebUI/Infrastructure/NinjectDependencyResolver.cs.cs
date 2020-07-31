@@ -29,7 +29,7 @@ namespace AdsBoard.WebUI.Infrastructure
 
         private void AddBindings()
         {
-
+            kernel.Bind<ICommentRepository>().To<EFCommentRepository>();
             kernel.Bind<IAdRepository>().To<EFAdRepository>();
         }
     }

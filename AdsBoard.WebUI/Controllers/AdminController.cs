@@ -1,6 +1,5 @@
 ﻿using AdsBoard.Domain.Entities.Identity;
 using AdsBoard.Domain.Infrastructure;
-using AdsBoard.WebUI.IdentityInf;
 using AdsBoard.WebUI.Models.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;

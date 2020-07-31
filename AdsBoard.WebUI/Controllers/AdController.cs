@@ -14,11 +14,14 @@ namespace AdsBoard.WebUI.Controllers
     public class AdController : Controller
     {
         private IAdRepository repository;
+        private ICommentRepository repoComm;
         public int pageSize = 3;
-        public AdController(IAdRepository repo)
+        public AdController(IAdRepository repo, ICommentRepository repo2)
         {
             repository = repo;
+            repoComm = repo2;
         }
+        [AllowAnonymous]
         public ViewResult List(int page = 1)
         {
             AdListViewModel model = new AdListViewModel
@@ -39,9 +42,14 @@ namespace AdsBoard.WebUI.Controllers
         [Authorize]
         public ViewResult Details(int adId)
         {
-            Advertisement ad = repository.Advertisements
-                .FirstOrDefault(a => a.AdId == adId);
-            return View(ad);
+            PostViewModel post = new PostViewModel
+            {
+                Advertisement = repository.Advertisements
+                .FirstOrDefault(a => a.AdId == adId),
+                Comments = repoComm.Comments.Where(a => a.adId == adId)
+
+            };
+            return View("Details", post);
 
         }
         [Authorize]
@@ -63,7 +71,7 @@ namespace AdsBoard.WebUI.Controllers
         }
         [Authorize]
         [HttpPost]
-        public ActionResult Edit(Advertisement ad, HttpPostedFileBase image=null)
+        public ActionResult Edit(Advertisement ad, HttpPostedFileBase image = null)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +81,7 @@ namespace AdsBoard.WebUI.Controllers
                     ad.ImageData = new byte[image.ContentLength];
                     image.InputStream.Read(ad.ImageData, 0, image.ContentLength);
                 }
-                
+
                 repository.SaveAd(ad);
                 TempData["message"] = string.Format("Зміни оголошення збережено!");
                 return RedirectToAction("List");
@@ -108,16 +116,19 @@ namespace AdsBoard.WebUI.Controllers
 
             if (ad != null && ad.ImageData != null)
             {
-                
-                    return File(ad.ImageData, ad.ImageMimeType);
-               
+
+                return File(ad.ImageData, ad.ImageMimeType);
+
             }
             else
             {
                 return null;
             }
         }
-       
+
+        
     }
+}
     
-    }
+    
+    

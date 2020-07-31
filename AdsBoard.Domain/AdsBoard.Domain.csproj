@@ -103,14 +103,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAdRepository.cs" />
+    <Compile Include="Abstract\ICommentRepository.cs" />
     <Compile Include="Concrete\EFAdRepository.cs" />
+    <Compile Include="Concrete\EFCommentRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Entities\Advertisement.cs" />
-    <Compile Include="Entities\Identity\AppRole.cs" />
+    <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Identity\AppUser.cs" />
     <Compile Include="Infrastructure\AppIdentityDbContext.cs" />
-    <Compile Include="Infrastructure\AppRoleManager.cs" />
     <Compile Include="Infrastructure\AppUserManager.cs" />
+    <Compile Include="Infrastructure\CustomUserValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

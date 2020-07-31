@@ -25,5 +25,10 @@ namespace AdsBoard.Domain.Entities
         public string Details { get; set; }
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+        public Advertisement()
+        {
+            Comments= new List<Comment>();
+        }
     }
 }

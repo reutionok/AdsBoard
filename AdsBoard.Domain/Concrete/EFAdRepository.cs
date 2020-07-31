@@ -13,6 +13,7 @@ namespace AdsBoard.Domain.Concrete
         {
             get { return context.Advertisements; }
         }
+        
         public void SaveAd(Advertisement ad)
         {
             if (ad.AdId == 0)
@@ -27,6 +28,8 @@ namespace AdsBoard.Domain.Concrete
                     dbEntry.Details = ad.Details;
                     dbEntry.ImageData = ad.ImageData;
                     dbEntry.ImageMimeType = ad.ImageMimeType;
+                    dbEntry.Comments = ad.Comments;
+                    
                 }
             }
             context.SaveChanges();
@@ -41,6 +44,7 @@ namespace AdsBoard.Domain.Concrete
             }
             return dbEntry;
         }
-            
+
+        
     }
 }

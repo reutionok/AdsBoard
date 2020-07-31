@@ -39,3 +39,10 @@ a {
 .portfolio-item {
     margin-bottom: 30px;
 }
+
+.media-left img {
+    width: 50px;
+}
+.media {
+    margin-top: 0px;
+}

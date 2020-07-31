@@ -19,6 +19,12 @@ namespace AdsBoard.Domain.Infrastructure
         {
             AppIdentityDbContext db = context.Get<AppIdentityDbContext>();
             AppUserManager manager = new AppUserManager(new UserStore<AppUser>(db));
+
+            manager.UserValidator = new CustomUserValidator(manager)
+            {
+                AllowOnlyAlphanumericUserNames = true,
+                RequireUniqueEmail = true
+            };
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
