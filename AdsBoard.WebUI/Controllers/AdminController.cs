@@ -1,11 +1,9 @@
 ﻿using AdsBoard.Domain.Entities.Identity;
+using AdsBoard.Domain.Infrastructure;
 using AdsBoard.WebUI.IdentityInf;
 using AdsBoard.WebUI.Models.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -20,12 +18,12 @@ namespace AdsBoard.WebUI.Controllers
         {
             return View(UserManager.Users);
         }
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<ActionResult> Create(CreateUserViewModel model)
         {
@@ -86,12 +84,20 @@ namespace AdsBoard.WebUI.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> Edit(string id, string email, string password)
+        public async Task<ActionResult> Edit(string id, string password, CreateUserViewModel model)
         {
             AppUser user = await UserManager.FindByIdAsync(id);
             if (user != null)
             {
-                user.Email = email;
+                user.PhoneNumber = model.PhoneNumber;
+                IdentityResult validPhoneNumber
+                    = await UserManager.UserValidator.ValidateAsync(user);
+
+                if (!validPhoneNumber.Succeeded)
+                {
+                    AddErrorsFromResult(validPhoneNumber);
+                }
+                user.Email = model.Email;
                 IdentityResult validEmail
                     = await UserManager.UserValidator.ValidateAsync(user);
 
@@ -105,7 +111,6 @@ namespace AdsBoard.WebUI.Controllers
                 {
                     validPass
                         = await UserManager.PasswordValidator.ValidateAsync(password);
-
                     if (validPass.Succeeded)
                     {
                         user.PasswordHash =
@@ -117,8 +122,8 @@ namespace AdsBoard.WebUI.Controllers
                     }
                 }
 
-                if ((validEmail.Succeeded && validPass == null) ||
-                        (validEmail.Succeeded && password != string.Empty && validPass.Succeeded))
+                if ((validPhoneNumber.Succeeded && validEmail.Succeeded &&  validPass == null) ||
+                        (validPhoneNumber.Succeeded && validEmail.Succeeded && password != string.Empty && validPass.Succeeded))
                 {
                     IdentityResult result = await UserManager.UpdateAsync(user);
                     if (result.Succeeded)

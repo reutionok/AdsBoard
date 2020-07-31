@@ -1,0 +1,32 @@
+﻿@model AdsBoard.WebUI.Models.Identity.CreateUserViewModel
+@{
+    ViewBag.Title = "Реєстрація";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@Html.ValidationSummary(false)
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label>Ім'я</label>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Номер телефону</label>
+        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Пароль</label>
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Зареєструватись</button>
+
+    @Html.ActionLink("Відміна", "List","Ad", null, new { @class = "btn btn-default" })
+}

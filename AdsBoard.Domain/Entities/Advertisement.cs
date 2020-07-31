@@ -13,6 +13,8 @@ namespace AdsBoard.Domain.Entities
         [Key]
         [HiddenInput(DisplayValue = false)]
         public int AdId { get; set; }
+        [Display(Name = "Ваше ім'я")]
+        public string OwnerId { get; set; }
 
         [Display(Name = "Заголовок")]
         [Required(ErrorMessage = "Будь ласка введіть заголовок")]

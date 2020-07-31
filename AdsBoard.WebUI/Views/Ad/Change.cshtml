@@ -1,4 +1,6 @@
-﻿@model IEnumerable<AdsBoard.Domain.Entities.Advertisement>
+﻿@using AdsBoard.WebUI.Models
+@model AdListViewModel
+
 @{
     ViewBag.Title = "Change";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,22 +18,33 @@
                 <th>Текст оголошення</th>
 
             </tr>
-            @foreach (var item in Model)
+            @if (@Model.Advertisements.Count() == 0)
             {
                 <tr>
-                    <td class="text-right">@item.AdId</td>
-                    <td>@Html.ActionLink(item.Headline, "Edit", new { item.AdId })</td>
-                    <td>@item.Details</td>
-                    <td class="text-center">
-                        @using (Html.BeginForm("Delete", "Ad"))
-                        {
-                            @Html.Hidden("AdId", item.AdId)
-                            <input type="submit"
-                                   class="btn btn-default btn-xs"
-                                   value="Видалити" />
-                        }
-                    </td>
+                    <td colspan="3" class="text-center">Ви не розміщали оголошень. Але можете це зробити вже зараз!</td>
                 </tr>
             }
-        </table>
+            else
+            {
+                foreach (var item in @Model.Advertisements)
+                {
+                    <tr>
+                        <td class="text-right">@item.AdId</td>
+                        <td>@Html.ActionLink(item.Headline, "Edit", new { item.AdId })</td>
+                        <td>@item.Details</td>
+                        <td class="text-center">
+                            @using (Html.BeginForm("Delete", "Ad"))
+                            {
+                                @Html.Hidden("AdId", item.AdId)
+                                <input type="submit"
+                                       class="btn btn-default btn-xs"
+                                       value="Видалити" />
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+
+            </table>
     </div>
+</div>

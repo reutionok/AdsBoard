@@ -1,5 +1,6 @@
 ﻿using AdsBoard.Domain.Abstract;
 using AdsBoard.Domain.Entities;
+using Amazon.IdentityManagement.Model;
 using System.Collections.Generic;
 
 
@@ -21,6 +22,7 @@ namespace AdsBoard.Domain.Concrete
                 Advertisement dbEntry = context.Advertisements.Find(ad.AdId);
                 if (dbEntry != null)
                 {
+                    dbEntry.OwnerId = ad.OwnerId;
                     dbEntry.Headline = ad.Headline;
                     dbEntry.Details = ad.Details;
                     dbEntry.ImageData = ad.ImageData;

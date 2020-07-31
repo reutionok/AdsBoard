@@ -3,16 +3,18 @@ using AdsBoard.Domain.Entities;
 using AdsBoard.WebUI.Models;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Claims;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Thinktecture.IdentityModel.Authorization.Mvc;
 
 namespace AdsBoard.WebUI.Controllers
 {
     public class AdController : Controller
     {
         private IAdRepository repository;
-        public int pageSize = 4;
+        public int pageSize = 3;
         public AdController(IAdRepository repo)
         {
             repository = repo;
@@ -45,7 +47,12 @@ namespace AdsBoard.WebUI.Controllers
         [Authorize]
         public ViewResult Change()
         {
-            return View(repository.Advertisements);
+            AdListViewModel ads = new AdListViewModel
+            {
+                Advertisements = repository.Advertisements
+                .Where(a => a.OwnerId == User.Identity.Name)
+            };
+            return View(ads);
         }
         [Authorize]
         public ViewResult Edit(int adId)
@@ -66,6 +73,7 @@ namespace AdsBoard.WebUI.Controllers
                     ad.ImageData = new byte[image.ContentLength];
                     image.InputStream.Read(ad.ImageData, 0, image.ContentLength);
                 }
+                
                 repository.SaveAd(ad);
                 TempData["message"] = string.Format("Зміни оголошення збережено!");
                 return RedirectToAction("List");
